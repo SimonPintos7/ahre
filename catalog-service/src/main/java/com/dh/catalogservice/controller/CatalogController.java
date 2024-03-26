@@ -20,7 +20,7 @@ public class CatalogController {
     // Obtener Movies y Series por su género
     @GetMapping("/{genre}")
     public ResponseEntity<Genre> getCatalogByGenre (@PathVariable String genre) {
-        return ResponseEntity.ok(catalogService.findByGenre(genre));
+        return ResponseEntity.ok(catalogService.getCatalogByGenre(genre));
     }
 
     // Crear movies

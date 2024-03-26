@@ -14,4 +14,19 @@ services:
     expose:
       - '3306'
 
+  zipkin:
+    image: openzipkin/zipkin:2
+    container_name: zipkin
+    restart: always
+    ports:
+      - '9411:9411'
 
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: 'test'
+    ports:
+      - '27017:27017'
+      - '27018:27018'

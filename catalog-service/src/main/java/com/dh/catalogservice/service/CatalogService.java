@@ -6,7 +6,7 @@ import com.dh.catalogservice.model.Serie;
 
 public interface CatalogService {
 
-    Genre findByGenre(String genre);
+    Genre getCatalogByGenre(String genre);
 
     Movie saveMovie(Movie movie);
 

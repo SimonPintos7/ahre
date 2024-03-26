@@ -8,8 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document
-@Builder
+@Document(collection = "Movies")
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Movie{

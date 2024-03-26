@@ -27,11 +27,11 @@ public class MovieServiceImpl implements MovieService {
     // obtiene las películas por genero y, si no hay error,
     // las almacena en el repo de películas de catalog-service
     @Override
-    public List<Movie> getMoviesByGenre(String genre, Boolean throwError) {
+    public List<Movie> getMoviesByGenre(String genre, Boolean throwError) throws RuntimeException {
         if (throwError) {
             throw new RuntimeException();
         }
-        return movieRepository.getMoviesByGenre(genre);
+        return movieRepository.findByGenre(genre);
     }
 
 }

@@ -33,19 +33,18 @@ public class CatalogServiceImpl implements CatalogService {
         this.serieRepository = serieRepository;
     }
 
-    // TODO: cambiar el nombre "movies" a "catalog" en las configuraciones
-    //  del circuit breaker en catalog-service
     @CircuitBreaker(name="catalog", fallbackMethod = "getCatalogFallbackMethod")
     @Retry(name="catalog")
     @Override
-    public Genre findByGenre(String genre) throws RuntimeException{
+    public Genre getCatalogByGenre(String genre) throws RuntimeException{
 
 //        log.info("Response received from port: {}", list.getHeaders().get("port"));
 
-        return new Genre(movieService.getMoviesByGenre(genre, false), serieRepository.getSeriesByGenre(genre));
+        log.info("calling catalog-service");
+        return new Genre(movieService.getMoviesByGenre(genre, false), serieRepository.findByGenre(genre));
     }
 
-    // método fallback: obtengo las pelís a través del client
+    // método fallback: obtengo las pelís a través del feign client
     public Genre getCatalogFallbackMethod(String genre, Exception ex) {
         Genre resultsByGenre = new Genre();
 
